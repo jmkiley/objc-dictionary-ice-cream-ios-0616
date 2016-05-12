@@ -37,22 +37,36 @@
 
 - (NSDictionary *)countsOfIceCream:(NSDictionary *)iceCreamByName {
     
-    NSArray *peanutButter = [ self namesForIceCream:@"Peanut Butter and Chocolate" ] ;
-    NSArray *vanilla = [ self namesForIceCream:@"Natural Vanilla" ] ;
-    NSArray *chocolate = [ self namesForIceCream:@"Mexican Chocolate" ] ;
-    NSArray *cookies = [ self namesForIceCream:@"Cookies 'n Cream" ] ;
+    NSString *iceCream ;
+    NSMutableDictionary *countsOfIceCream = [NSMutableDictionary dictionary ] ;
+    NSArray *namesOfPeople = [ NSArray new ] ;
+    NSNumber *countPeople = nil;
     
-    NSNumber *countPeanutButter = @([ peanutButter count ]);
-    NSNumber *countVanilla = @([ vanilla count ]);
-    NSNumber *countChocolate = @([ chocolate count ]) ;
-    NSNumber *countCookies = @([ cookies count ]) ;
     
-    NSMutableDictionary *countsOfIceCream = @{
-            @"Peanut Butter and Chocolate" : countPeanutButter,
-            @"Natural Vanilla" : countVanilla ,
-            @"Mexican Chocolate" : countChocolate ,
-            @"Cookies 'n Cream" : countCookies ,
-            };
+    for (NSString *key in iceCreamByName ) {
+        iceCream = iceCreamByName[key] ;
+        if ( [countsOfIceCream objectForKey:iceCream ] == 0 ) {
+            namesOfPeople = [self namesForIceCream:iceCream ] ;
+            countPeople = @([ namesOfPeople count ]);
+            countsOfIceCream[iceCream]=countPeople;
+        }
+    }
+//    NSArray *peanutButter = [ self namesForIceCream:@"Peanut Butter and Chocolate" ] ;
+//    NSArray *vanilla = [ self namesForIceCream:@"Natural Vanilla" ] ;
+//    NSArray *chocolate = [ self namesForIceCream:@"Mexican Chocolate" ] ;
+//    NSArray *cookies = [ self namesForIceCream:@"Cookies 'n Cream" ] ;
+//    
+//    NSNumber *countPeanutButter = @([ peanutButter count ]);
+//    NSNumber *countVanilla = @([ vanilla count ]);
+//    NSNumber *countChocolate = @([ chocolate count ]) ;
+//    NSNumber *countCookies = @([ cookies count ]) ;
+//    
+//    NSMutableDictionary *countsOfIceCream = @{
+//            @"Peanut Butter and Chocolate" : countPeanutButter,
+//            @"Natural Vanilla" : countVanilla ,
+//            @"Mexican Chocolate" : countChocolate ,
+//            @"Cookies 'n Cream" : countCookies ,
+//            };
     NSLog(@"%@", countsOfIceCream);
     return countsOfIceCream;
 }
